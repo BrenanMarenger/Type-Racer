@@ -1,0 +1,42 @@
+<!--
+	Feature list:
+	=============
+	Field that shows what the word is - use a famou quotes API.
+	paragraph to type in, submits automatically once you have the quote typed exactly.
+	List of all users connected
+	Fixed time (say, 5 seconds) for eveyrone to type.  Only pre-empts if everyone submitted it.
+	It shows the results for all people in the room.
+	After some time, starts a new round.
+	Keep winner list - average time or something.
+	Random username/emoji combo.
+
+	Web socket messages we will need:
+	================================
+				(client to server) -> "I'm connecting"
+"sendName"		(server to client) -> random name and emoji are sent to the client.
+				(server to client) -> send list of all people connected (and their average times)
+				(server to client) -> new quote, time until end of round
+				(server to client) -> Who won the round (rankings / times?).
+				(client to server) -> "I typed it in!"
+	-->
+
+<html>
+	<head>
+		<script src="/socket.io/socket.io.js" type="text/javascript"></script>
+		<script src="vue.global.js" type="text/javascript"></script>
+		<script defer src="client.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Word Race Multiplayer Online Interactive</h1>
+			<h2>Logged in as {{username}}</h2>
+			<p><strong>Time left: 4 seconds...</strong></p>
+			<p>It was the best of times, it was the worst of times.</p>
+			<p>It was the best of times, it was</p>
+			<ul>
+				<li v-for="user of userList">{{user}}</li>
+			</ul>
+		</div>
+
+	</body>
+</html>
